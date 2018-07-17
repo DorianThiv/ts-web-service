@@ -1,5 +1,6 @@
 
 import url = require('url');
+import querystring = require('querystring');
 
 import { IController } from "../interfaces/controller.interface";
 
@@ -55,7 +56,10 @@ export class ControllerBase implements IController {
     }
 
     public parseUrl(urlStr: string) {
-        const urlObj = url.parse(urlStr);
-        console.log(urlObj);
+        return url.parse(urlStr);
     }
-}
+
+    public parseQuery(query: string) {
+        return querystring.parse(query);
+    }
+ }

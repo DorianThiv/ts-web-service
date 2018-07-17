@@ -2,6 +2,7 @@ import * as http from 'http';
 import * as debug from 'debug';
 
 import App from './app';
+import { ModuleLoaderService } from './services/module-loader.service';
 
 debug('ts-express:server');
 

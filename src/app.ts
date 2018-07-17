@@ -1,7 +1,10 @@
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+
 import { UrlResolverService } from './services/url-resolver.service';
+
+import { ModuleLoaderService } from './services/module-loader.service';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -22,6 +25,8 @@ class App {
   private middleware(): void {
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({ extended: false }));
+
+    ModuleLoaderService.initialize();
   }
 
   // Configure API endpoints.

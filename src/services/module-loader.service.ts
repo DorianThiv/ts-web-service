@@ -47,5 +47,9 @@ export class ModuleLoaderService {
         return true;
     }
 
+    public static getModuleByReference(reference: string) {
+        return this.modules.find(m => m.loaded && m.reference === reference);
+    }
+
 }
 

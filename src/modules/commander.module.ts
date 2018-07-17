@@ -1,5 +1,7 @@
 import { IModule } from "../interfaces/module.interfaces";
 import { ModuleBase } from "../models/module.base";
+import { ExecuteRequestDto } from "../dtos/execute-request.dto";
+
 
 export class CommanderModule extends ModuleBase implements IModule {
 
@@ -8,16 +10,19 @@ export class CommanderModule extends ModuleBase implements IModule {
     }
 
     initialize(): boolean {
-        this._loaded = true;
-        console.log('Initialize : ' + this._reference);
-        return this._loaded;
+        this.loaded = true;
+        console.log('Initialize : ' + this.reference);
+        return this.loaded;
     }
-    execute(): boolean {
-        return true;
+
+    execute(): ExecuteRequestDto {
+        return new ExecuteRequestDto('ls', { commander: 'Execute' });
     }
+
     update(): boolean {
         return true;
     }
+
     unitialize(): boolean {
         return true;
     }

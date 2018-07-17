@@ -1,21 +1,22 @@
 import { IModule } from "../interfaces/module.interfaces";
+import { ExecuteRequestDto } from "../dtos/execute-request.dto";
 
 export class ModuleBase implements IModule {
 
-    protected _reference: string;
-    protected _loaded: boolean;
+    public reference: string;
+    public loaded: boolean;
 
     constructor (reference: string) {
-        this._reference = reference;
-        console.log('Constructor : ' + this._reference);
+        this.reference = reference;
+        console.log('Constructor : ' + this.reference);
     }
 
     initialize(): boolean {
         return true;
     }
 
-    execute(): boolean {
-        return true;
+    execute(): ExecuteRequestDto {
+        return new ExecuteRequestDto(undefined, undefined, undefined);
     }
 
     update(): boolean {
@@ -24,5 +25,9 @@ export class ModuleBase implements IModule {
 
     unitialize(): boolean {
         return true;
+    }
+
+    isLoaded() {
+        return this.loaded;
     }
 }
