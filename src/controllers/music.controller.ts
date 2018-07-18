@@ -16,13 +16,12 @@ export class MusicController extends ControllerBase {
     public async scrutanize() {
 
         this.router.get('/musics', (req, res, next) => {
-            console.log('MusicController (get) request : ' + req.url + ', route : /music ');
-            const result = this.commander.execute(new ExecuteRequestDto('ls'));
-            res.json([]);
+            this.commander.execute(new ExecuteRequestDto('ls')).then(result => {
+                res.json(result);
+            });
         });
 
         this.router.get('/musics/help', (req, res, next) => {
-            console.log('MusicController (get) request : ' + req.url + ', route : /music ');
             res.json([
                 { method: 'GET', action: 'help', url: 'musics/help' },
                 { method: 'GET', action: 'list', url: 'musics' },
@@ -34,8 +33,7 @@ export class MusicController extends ControllerBase {
             ]);
         });
 
-        this.router.post('/musics', (req, res, next) => {
-            console.log('MusicController (post) request : ' + req.url + ', route : /music ');
+        this.router.post('/musics/parse', (req, res, next) => {
             const parsedUrl = this.parseUrl(req.url);
             const query = this.parseQuery(parsedUrl.query);
             res.json({

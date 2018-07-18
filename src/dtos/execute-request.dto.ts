@@ -7,7 +7,7 @@ export class ExecuteRequestDto {
     public data: any;
     public error: string;
 
-    constructor(action: string, data?: any, status?: boolean, error?: string) {
+    constructor(action: string, data?: any, error?: string, status?: boolean) {
         this.action = action;
         this.data = data;
     }

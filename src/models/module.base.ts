@@ -5,6 +5,8 @@ export class ModuleBase implements IModule {
 
     public reference: string;
     public loaded: boolean;
+    
+    private model: any;
 
     constructor (reference: string) {
         this.reference = reference;
@@ -27,7 +29,7 @@ export class ModuleBase implements IModule {
         return true;
     }
 
-    isLoaded() {
+    public isLoaded() {
         return this.loaded;
     }
 }
