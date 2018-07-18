@@ -11,19 +11,19 @@ export class ModuleBase implements IModule {
         console.log('Constructor : ' + this.reference);
     }
 
-    initialize(): boolean {
+    public async initialize(): Promise<boolean> {
         return true;
     }
 
-    execute(): ExecuteRequestDto {
+    public async execute(request: ExecuteRequestDto): Promise<ExecuteRequestDto> {
         return new ExecuteRequestDto(undefined, undefined, undefined);
     }
 
-    update(): boolean {
+    public async update(): Promise<boolean> {
         return true;
     }
 
-    unitialize(): boolean {
+    public async unitialize(): Promise<boolean> {
         return true;
     }
 

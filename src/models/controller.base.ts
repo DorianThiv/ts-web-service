@@ -19,7 +19,7 @@ export class ControllerBase implements IController {
         console.log('Construct controller : ' + this.identifier);
     }
 
-    public scrutanize(): void {
+    public async scrutanize() {
 
         this.router.get('/', (req, res, next) => {
             console.log('ControllerBase (get) : / ');

@@ -13,16 +13,12 @@ export class MusicController extends ControllerBase {
         this.commander = ModuleLoaderService.getModuleByReference('modules/commander');
     }
 
-    public scrutanize() {
+    public async scrutanize() {
 
         this.router.get('/musics', (req, res, next) => {
             console.log('MusicController (get) request : ' + req.url + ', route : /music ');
-            res.json([
-                { name: 'Music1', time: '4 min 10 s' },
-                { name: 'Music2', time: '2 min 59 s' },
-                { name: 'Music3', time: '3 min 45 s' },
-                { name: 'Music4', time: '3 min 57 s' },
-            ]);
+            const result = this.commander.execute(new ExecuteRequestDto('ls'));
+            res.json([]);
         });
 
         this.router.get('/musics/help', (req, res, next) => {

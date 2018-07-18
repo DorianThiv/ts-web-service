@@ -9,21 +9,21 @@ export class CommanderModule extends ModuleBase implements IModule {
         super('modules/commander');
     }
 
-    initialize(): boolean {
+    public async initialize(): Promise<boolean> {
         this.loaded = true;
         console.log('Initialize : ' + this.reference);
         return this.loaded;
     }
 
-    execute(): ExecuteRequestDto {
+    public async execute(request: ExecuteRequestDto): Promise<ExecuteRequestDto> {
         return new ExecuteRequestDto('ls', { commander: 'Execute' });
     }
 
-    update(): boolean {
+    public async update(): Promise<boolean> {
         return true;
     }
 
-    unitialize(): boolean {
+    public async unitialize(): Promise<boolean> {
         return true;
     }
 
