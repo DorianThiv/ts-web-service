@@ -18,8 +18,11 @@ export class CommanderModule extends ModuleBase implements IModule {
 
     public async execute(request: ExecuteRequestDto): Promise<ExecuteRequestDto> {
         const terminal = new Terminal();
-        const data = await terminal.ls();
-        return new ExecuteRequestDto('ls', {data});
+        const ret = new ExecuteRequestDto('ls');
+        const data = terminal.ls(function (result) {
+            ret.data = result;
+        });
+        return ret;
     }
 
     public async update(): Promise<boolean> {

@@ -2,14 +2,16 @@
 
 export class Terminal {
 
-    private cmd;
+    private exec;
 
     constructor() {
-        this.cmd = require('node-cmd');
+        this.exec = require('child_process').exec;
     }
 
-    public async ls() {
-        return { stdout: '_stdout' };
+    public async ls(callback?: any) {
+        this.exec('dir', function(err, stdout, stderr) {
+            callback(stdout);
+        });
     }
 
 }
