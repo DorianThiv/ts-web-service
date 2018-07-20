@@ -1,6 +1,7 @@
-import { ModuleBase } from "../models/module.base";
 import { IModule } from "../interfaces/module.interfaces";
 import { CommanderModule } from "../modules/commander.module";
+import { ModuleBase } from "../modules/module.base";
+import { DirectoryModule } from "../modules/directory.module";
 
 
 export class ModuleLoaderService {
@@ -13,6 +14,7 @@ export class ModuleLoaderService {
         console.log('Constructor Module Loader');
         ModuleLoaderService.modules = [];
         ModuleLoaderService.modules.push(new CommanderModule());
+        ModuleLoaderService.modules.push(new DirectoryModule());
     }
 
     public static getInstance() {

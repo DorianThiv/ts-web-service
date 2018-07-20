@@ -1,7 +1,7 @@
 
 import { Router } from '../../node_modules/@types/express';
 
-import { ControllerBase } from '../models/controller.base';
+import { ControllerBase } from '../controllers/controller.base';
 import { MusicController } from '../controllers/music.controller';
 
 export class UrlResolverService {
