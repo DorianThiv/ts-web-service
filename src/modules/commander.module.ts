@@ -10,23 +10,23 @@ export class CommanderModule extends ModuleBase implements IModule {
         super('modules/commander');
     }
 
-    public async initialize(): Promise<boolean> {
+    public initialize(): boolean {
         this.loaded = true;
         return this.loaded;
     }
 
-    public async execute(request: ExecuteRequestDto): Promise<ExecuteRequestDto> {
+    public execute(request: ExecuteRequestDto): ExecuteRequestDto {
         const terminal = new Terminal();
         const ret = new ExecuteRequestDto(Action.List);
         // ret.data = terminal.getCurrentDir();
         return ret;
     }
 
-    public async update(): Promise<boolean> {
+    public update(): boolean {
         return true;
     }
 
-    public async unitialize(): Promise<boolean> {
+    public unitialize(): boolean {
         return true;
     }
 

@@ -1,4 +1,7 @@
 
+const STATIC_USERNAME = 'root';
+const STATIC_PASSWORD = 'root';
+
 export class User {
 
     private static instance: User;
@@ -14,9 +17,11 @@ export class User {
         this.password = p;
     }
 
-    public static getInstance(username: string, password: string) {
+    public static getInstance(username?: string, password?: string) {
         if (!User.instance) {
-            User.instance = new User(username, password);
+            if (username === STATIC_USERNAME && password === STATIC_PASSWORD) {
+                User.instance = new User(username, password);
+            }
         }
         return User.instance;
     }

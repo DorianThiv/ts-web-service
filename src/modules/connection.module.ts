@@ -1,6 +1,7 @@
 import { IModule } from "../interfaces/module.interfaces";
 import { ExecuteRequestDto } from "../dtos/execute-request.dto";
 import { ModuleBase } from "./module.base";
+import { User } from "../models/user.model";
 
 export class ConnectionModule extends ModuleBase implements IModule {
 
@@ -9,14 +10,29 @@ export class ConnectionModule extends ModuleBase implements IModule {
         super('modules/connection');
     }
 
-    public async initialize(): Promise<boolean> {
+    public initialize(): boolean {
         this.loaded = true;
         return this.loaded;
     }
 
-    public async execute(request: ExecuteRequestDto): Promise<ExecuteRequestDto> {
+    public execute(request: ExecuteRequestDto): ExecuteRequestDto {
         switch (request.action) {
-            case Action.Create:
+            case Action.AddOrUpdate:
+                if (request) {
+                    const session = request.data.session;
+                    const username = request.data.username;
+                    const password = request.data.password;
+                    const user = User.getInstance(username, password);
+                    if (!user) {
+                        request.status = false;
+                        request.data = 'User connection error';
+                        request.error = InternalError.ConnectionError;
+                    } else {
+                        request.status = true;
+                        request.data = { session: user.uuid };
+                        request.error = InternalError.NoError;
+                    }
+                }
                 return request;       
             case Action.Read:
                 return request;       
@@ -29,11 +45,11 @@ export class ConnectionModule extends ModuleBase implements IModule {
         }
     }
 
-    public async update(): Promise<boolean> {
+    public update(): boolean {
         return true;
     }
 
-    public async unitialize(): Promise<boolean> {
+    public unitialize(): boolean {
         return true;
     }
 

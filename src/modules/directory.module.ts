@@ -13,14 +13,14 @@ export class DirectoryModule extends ModuleBase implements IModule {
         super('modules/directory');
     }
 
-    public async initialize(): Promise<boolean> {
+    public initialize(): boolean {
         this.directory = new DirectorySystem();
         this.terminal = new Terminal();
         this.loaded = true;
         return this.loaded;
     }
 
-    public async execute(request: ExecuteRequestDto): Promise<ExecuteRequestDto> {
+    public execute(request: ExecuteRequestDto): ExecuteRequestDto {
         switch (request.action) {
             case Action.List:
                 const path = request.data['path'];
@@ -39,11 +39,11 @@ export class DirectoryModule extends ModuleBase implements IModule {
         }
     }
 
-    public async update(): Promise<boolean> {
+    public update(): boolean {
         return true;
     }
 
-    public async unitialize(): Promise<boolean> {
+    public unitialize(): boolean {
         return true;
     }
 

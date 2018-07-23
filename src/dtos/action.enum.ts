@@ -5,6 +5,7 @@ const enum Action {
     Read,
     Update,
     Delete,
+    AddOrUpdate,
     Play,
     Pause,
 }

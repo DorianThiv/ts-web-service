@@ -19,17 +19,15 @@ export class MusicController extends BaseController {
         this.router.get('/musics', (req, res, next) => {
             const params = this.parseParameters(req);
             const executeDto = new ExecuteRequestDto(Action.List, params);
-            this.directory.execute(executeDto).then(result => {
-                res.json(result);
-            });
+            const result = this.directory.execute(executeDto);
+            res.json(result);
         });
 
         this.router.get('/musics/play', (req, res, next) => {
             const params = this.parseParameters(req);
             const executeDto = new ExecuteRequestDto(Action.Play, params);
-            this.directory.execute(executeDto).then(result => {
-                res.json(result);
-            });
+            const result = this.directory.execute(executeDto);
+            res.json(result);
         });
 
         this.router.get('/musics/help', (req, res, next) => {

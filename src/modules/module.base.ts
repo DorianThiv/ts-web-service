@@ -12,19 +12,19 @@ export class ModuleBase implements IModule {
         this.reference = reference;
     }
 
-    public async initialize(): Promise<boolean> {
+    public initialize(): boolean {
         return true;
     }
 
-    public async execute(request: ExecuteRequestDto): Promise<ExecuteRequestDto> {
+    public execute(request: ExecuteRequestDto): ExecuteRequestDto {
         return new ExecuteRequestDto(undefined, undefined, undefined);
     }
 
-    public async update(): Promise<boolean> {
+    public update(): boolean {
         return true;
     }
 
-    public async unitialize(): Promise<boolean> {
+    public unitialize(): boolean {
         return true;
     }
 

@@ -2,12 +2,12 @@ import { ExecuteRequestDto } from "../dtos/execute-request.dto";
 
 export interface IModule {
 
-    initialize(): Promise<boolean>;
+    initialize(): boolean;
 
-    execute(request: ExecuteRequestDto): Promise<ExecuteRequestDto>;
+    execute(request: ExecuteRequestDto): ExecuteRequestDto;
 
-    update(): Promise<boolean>;
+    update(): boolean;
 
-    unitialize(): Promise<boolean>;
+    unitialize(): boolean;
 
 }
