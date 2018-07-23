@@ -5,7 +5,6 @@ import { User } from "../models/user.model";
 
 export class ConnectionModule extends ModuleBase implements IModule {
 
-
     constructor() {
         super('modules/connection');
     }

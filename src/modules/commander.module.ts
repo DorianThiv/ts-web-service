@@ -18,7 +18,7 @@ export class CommanderModule extends ModuleBase implements IModule {
     public execute(request: ExecuteRequestDto): ExecuteRequestDto {
         const terminal = new Terminal();
         const ret = new ExecuteRequestDto(Action.List);
-        // ret.data = terminal.getCurrentDir();
+        ret.data = terminal.getCurrentDir();
         return ret;
     }
 

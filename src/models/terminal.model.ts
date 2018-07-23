@@ -11,7 +11,7 @@ export class Terminal {
     public play(name: string) {
         try {
             const { execSync } = require('child_process');
-            let stdout = execSync('dir');
+            let stdout = execSync('vlc');
             stdout = new Buffer(stdout).toString('ascii');
             console.log(stdout);
             return { status: true, data: stdout };

@@ -1,4 +1,10 @@
 
+/**
+ * User Model
+ * ---------------------------
+ * Only one user on a server.
+ */
+
 const STATIC_USERNAME = 'root';
 const STATIC_PASSWORD = 'root';
 
@@ -18,15 +24,17 @@ export class User {
     }
 
     public static getInstance(username?: string, password?: string) {
-        if (!User.instance) {
-            if (username === STATIC_USERNAME && password === STATIC_PASSWORD) {
+        if (username === STATIC_USERNAME && password === STATIC_PASSWORD) {
+            if (!User.instance) {
                 User.instance = new User(username, password);
             }
+        } else {
+            User.disconnect();
         }
-        return User.instance;
+        return User.instance; 
     }
 
-    public disconnect() {
+    public static disconnect() {
         User.instance = undefined;
     }
 

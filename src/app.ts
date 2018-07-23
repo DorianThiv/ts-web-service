@@ -3,10 +3,9 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 
 import { UrlResolverService } from './services/url-resolver.service';
-
 import { ModuleLoaderService } from './services/module-loader.service';
 
-class App {
+class Application {
 
   public express: express.Application;
 
@@ -36,4 +35,4 @@ class App {
 
 }
 
-export default new App().express;
+export default new Application().express;
