@@ -10,7 +10,6 @@ export class ModuleBase implements IModule {
 
     constructor (reference: string) {
         this.reference = reference;
-        console.log('Constructor : ' + this.reference);
     }
 
     public async initialize(): Promise<boolean> {

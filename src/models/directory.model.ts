@@ -4,12 +4,11 @@ import { dirname } from 'path';
 
 export class DirectorySystem {
 
-    constructor() {
-
-    }
+    constructor() { }
 
     public getDirectoryContent(path: string) {
         try {
+            if (!path) { throw new Error('Parameter path is undefined'); }
             const content = fs.readdirSync(path);
             return { status: true, data: content };
         } catch(error) {

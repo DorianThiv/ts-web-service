@@ -1,11 +1,11 @@
-import { ControllerBase } from "./controller.base";
-import { Router } from "../../node_modules/@types/express";
+import { BaseController } from "./base.controller";
 import { DirectoryModule } from "../modules/directory.module";
 import { ModuleLoaderService } from "../services/module-loader.service";
 import { ExecuteRequestDto } from "../dtos/execute-request.dto";
 import { ModuleBase } from "../modules/module.base";
+import { Router } from "express";
 
-export class MusicController extends ControllerBase {
+export class MusicController extends BaseController {
 
     public directory: ModuleBase;
 
@@ -56,11 +56,6 @@ export class MusicController extends ControllerBase {
             });
         });
 
-    }
-
-    private parseParameters(request) {
-        const parsedRequest = this.parseUrl(request.url);
-        return this.parseQuery(parsedRequest.query);
     }
 
 }

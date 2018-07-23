@@ -1,13 +1,12 @@
 import { IModule } from "../interfaces/module.interfaces";
 import { ExecuteRequestDto } from "../dtos/execute-request.dto";
-import { Terminal } from "../models/terminal.model";
 import { ModuleBase } from "./module.base";
 
+export class ConnectionModule extends ModuleBase implements IModule {
 
-export class CommanderModule extends ModuleBase implements IModule {
 
     constructor() {
-        super('modules/commander');
+        super('modules/connection');
     }
 
     public async initialize(): Promise<boolean> {
@@ -16,10 +15,18 @@ export class CommanderModule extends ModuleBase implements IModule {
     }
 
     public async execute(request: ExecuteRequestDto): Promise<ExecuteRequestDto> {
-        const terminal = new Terminal();
-        const ret = new ExecuteRequestDto(Action.List);
-        // ret.data = terminal.getCurrentDir();
-        return ret;
+        switch (request.action) {
+            case Action.Create:
+                return request;       
+            case Action.Read:
+                return request;       
+            case Action.Update:
+                return request;       
+            case Action.Delete:
+                return request;       
+            default:
+                break;
+        }
     }
 
     public async update(): Promise<boolean> {

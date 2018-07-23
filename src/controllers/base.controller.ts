@@ -7,7 +7,7 @@ import { IController } from "../interfaces/controller.interface";
 import { Router } from "../../node_modules/@types/express";
 
 
-export class ControllerBase implements IController {
+export class BaseController implements IController {
 
     protected identifier: string;
     protected router: Router;
@@ -16,13 +16,11 @@ export class ControllerBase implements IController {
     constructor (identifier: string, router: Router) {
         this.identifier = identifier;
         this.router = router;
-        console.log('Construct controller : ' + this.identifier);
     }
 
     public async scrutanize() {
 
         this.router.get('/', (req, res, next) => {
-            console.log('ControllerBase (get) : / ');
             res.json({
                 'type': 'echo',
                 'method': 'GET'
@@ -30,7 +28,6 @@ export class ControllerBase implements IController {
         });
 
         this.router.post('/', (req, res, next) => {
-            console.log('ControllerBase (post) : / ');
             res.json({
                 'type': 'echo',
                 'method': 'POST'
@@ -38,7 +35,6 @@ export class ControllerBase implements IController {
         });
 
         this.router.put('/', (req, res, next) => {
-            console.log('ControllerBase (put) : / ');
             res.json({
                 'type': 'echo',
                 'method': 'PUT'
@@ -46,7 +42,6 @@ export class ControllerBase implements IController {
         });
 
         this.router.delete('/', (req, res, next) => {
-            console.log('ControllerBase (delete) : / ');
             res.json({
                 'type': 'echo',
                 'method': 'DELETE'
@@ -55,11 +50,25 @@ export class ControllerBase implements IController {
 
     }
 
-    public parseUrl(urlStr: string) {
+    protected parseParameters(request) {
+        if (request) {
+            const parsedRequest = this.parseUrl(request.url);
+            return this.parseQuery(parsedRequest.query);
+        } else { return {}; }
+    }
+
+    protected parseBody(request) {
+        if (request) {
+            return request.body;
+        } else { return  {}; }
+    }
+
+
+    protected parseUrl(urlStr: string) {
         return url.parse(urlStr);
     }
 
-    public parseQuery(query: string) {
+    protected parseQuery(query: string) {
         return querystring.parse(query);
     }
  }

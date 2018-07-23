@@ -1,8 +1,9 @@
 
 import { Router } from '../../node_modules/@types/express';
 
-import { ControllerBase } from '../controllers/controller.base';
+import { BaseController } from '../controllers/base.controller';
 import { MusicController } from '../controllers/music.controller';
+import { ConnectionController } from '../controllers/connection.controller';
 
 export class UrlResolverService {
 
@@ -10,11 +11,12 @@ export class UrlResolverService {
 
     public router: Router;
 
-    private contollers: ControllerBase[];
+    private contollers: BaseController[];
 
     constructor(router: Router) {
         this.router = router;
         this.contollers = [];
+        this.contollers.push(new ConnectionController(this.router));
         this.contollers.push(new MusicController(this.router));
     }
 

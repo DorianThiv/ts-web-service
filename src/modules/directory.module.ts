@@ -14,10 +14,9 @@ export class DirectoryModule extends ModuleBase implements IModule {
     }
 
     public async initialize(): Promise<boolean> {
-        this.loaded = true;
-        console.log('Initialize : ' + this.reference);
         this.directory = new DirectorySystem();
         this.terminal = new Terminal();
+        this.loaded = true;
         return this.loaded;
     }
 

@@ -1,6 +1,10 @@
 const enum Action {
     List,
     Selection,
-    Pause,
+    Create,
+    Read,
+    Update,
+    Delete,
     Play,
+    Pause,
 }
